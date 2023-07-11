@@ -14,18 +14,33 @@
 // // *******
 
 function Boo() {
+  console.log("start");
   const values = [1, 2, 3];
   let n = 0;
+  let finish = false;
 
   return {
-    next: function () {
+    next: function() {
       if (n < values.length) {
-        n++;
-        return { value: n, done: false };
+
+        return {
+          value: values[n++],
+          done: false
+        };
+      } else if (!finish) {
+        finish = true;
+        console.log('finish');
+        return {
+          value: undefined,
+          done: true
+        };
       } else {
-        return { value: undefined, done: true };
+        return {
+          value: undefined,
+          done: true
+        };
       }
-    },
+    }
   };
 }
 
